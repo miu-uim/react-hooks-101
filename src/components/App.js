@@ -21,7 +21,18 @@ const App = () => {
     setTitle("");
     setBody("");
   };
-  // console.log({ state });
+
+  const deleteAllEvents = (e) => {
+    e.preventDefault();
+    const result = window.confirm(
+      "すべてのイベントを本当に削除して良いですか？"
+    );
+    if (result) dispatch({ type: "DELETE_ALL_EVENTS" });
+  };
+
+  // 真偽値を入れる
+  const unCreatabele = title === "" || body === "";
+
   return (
     <>
       <div className="container-fluid">
@@ -46,10 +57,20 @@ const App = () => {
               onChange={(e) => setBody(e.target.value)}
             />
           </div>
-          <button className="btn btn-primary" onClick={addEvent}>
+          <button
+            className="btn btn-primary"
+            onClick={addEvent}
+            disabled={unCreatabele}
+          >
             イベントを作成する
           </button>
-          <button className="btn btn-danger">すべてのイベントを削除する</button>
+          <button
+            className="btn btn-danger"
+            onClick={deleteAllEvents}
+            disabled={state.length === 0}
+          >
+            すべてのイベントを削除する
+          </button>
         </form>
 
         <h4>イベント一覧</h4>
