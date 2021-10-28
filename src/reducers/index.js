@@ -35,7 +35,7 @@
 //  }
 // ]
 //
-const events = (state = [1], action) => {
+const events = (state = [], action) => {
   switch (action.type) {
     case "CREATE_EVENT":
       const event = { title: action.title, body: action.body };
